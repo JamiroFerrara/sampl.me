@@ -1,0 +1,6 @@
+[submodule "backend/SurrealASP.lib"]
+	path = backend/surreal
+	url = https://github.com/JamiroFerrara/SurrealASP.lib
+[submodule "backend/wasabi-uploader-api"]
+	path = backend/api-s3
+	url = https://github.com/JamiroFerrara/wasabi-uploader-api
