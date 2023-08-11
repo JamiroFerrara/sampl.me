@@ -9,16 +9,10 @@
  * ---------------------------------------------------------------
  */
 
-export interface Profile {
-  profile_picture?: string | null;
-  description?: string | null;
-}
-
 export interface User {
   id?: string | null;
   username?: string | null;
   password?: string | null;
-  profile?: Profile;
 }
 
 export type QueryParamsType = Record<string | number, any>;
