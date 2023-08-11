@@ -5,6 +5,8 @@ publish:
 
 init:
 	git submodule update --init --recursive
+
+sync:
 	npx swagger-typescript-api -p http://localhost:5280/swagger/v1/swagger.json -o frontend/web/src/api -n client.ts
 
 debug:
