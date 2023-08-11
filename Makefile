@@ -5,6 +5,7 @@ publish:
 
 init:
 	git submodule update --init --recursive
+	npx swagger-typescript-api -p http://localhost:5280/swagger/v1/swagger.json -o frontend/web/src/api -n client.ts
 
 debug:
 	tmux split-window -h "cargo run --manifest-path backend/api-s3/Cargo.toml"
