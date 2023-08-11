@@ -6,27 +6,16 @@
 	import { createForm } from 'svelte-forms-lib';
 	import * as yup from 'yup';
 
-	let inputDemo = '';
-	let users: User[] = [];
-
-	onMount(async () => {
-		await getUsers();
-	});
-
-	async function getUsers() {
-		let res = await api.user.getAllUser();
-		users = res.data;
-	}
+	export let onUserCreated: () => void;
 
 	async function createUser(username: string, password: string) {
-		let user: User = {
+		await api.user.createUser({
 			username: username,
 			password: password
-		};
-		await api.user.createUser(user);
-		await getUsers();
-		inputDemo = '';
+		});
+		onUserCreated();
 	}
+
 	const { form, errors, state, handleChange, handleSubmit } = createForm({
 		initialValues: {
 			name: '',
@@ -78,11 +67,4 @@
 		</label>
 		<button class="btn" type="submit">Submit</button>
 	</form>
-
-	{#each users as user}
-		<div>
-			User: {user.username}
-			Password: {user.password}
-		</div>
-	{/each}
 </div>
