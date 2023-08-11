@@ -3,6 +3,8 @@
 	import { onMount } from 'svelte';
 	import type { User } from '../../api/client';
 	import Field from './field.svelte';
+	import { createForm } from 'svelte-forms-lib';
+	import * as yup from 'yup';
 
 	let inputDemo = '';
 	let users: User[] = [];
@@ -16,7 +18,7 @@
 		users = res.data;
 	}
 
-	async function createUser() {
+	async function createUser(username: string, password: string) {
 		let user: User = {
 			username: username,
 			password: password
@@ -25,60 +27,55 @@
 		await getUsers();
 		inputDemo = '';
 	}
-
-	let username = '';
-	let password = '';
-
-	let has_username_error = false;
-	let has_password_error = false;
-
-	let username_error = '';
-	let password_error = '';
-
-	function onSubmit() {
-		if (validate()) {
-			createUser();
+	const { form, errors, state, handleChange, handleSubmit } = createForm({
+		initialValues: {
+			name: '',
+			password: ''
+		},
+		validationSchema: yup.object().shape({
+			name: yup.string().required(),
+			password: yup.string().required()
+		}),
+		onSubmit: (values) => {
+			createUser(values.name, values.password);
 		}
-	}
-
-	function validate(): boolean {
-		let valid = true;
-		if (username === '') {
-			valid = false;
-			username_error = "Username can't be null";
-			has_username_error = true;
-		} else {
-			has_password_error = false;
-		}
-
-		if (password === '') {
-			valid = false;
-			password_error = "password can't be null";
-			has_password_error = true;
-		} else {
-			has_username_error = false;
-		}
-
-		return valid;
-	}
+	});
 </script>
 
 <div>
-	<form class="m-8 space-y-4 card p-4" on:submit={onSubmit}>
-		<Field name="Username" value={username} />
+	<form class="m-8 space-y-4 card p-4" on:submit={handleSubmit}>
 		<label class="label">
-			<span>Input</span>
+			<span>Name</span>
 			<input
-				class={has_password_error ? 'input input-error' : 'input'}
+				id="name"
+				name="name"
+				on:change={handleChange}
+				on:blur={handleChange}
+				bind:value={$form.name}
+				class={'input'}
 				type="text"
-				placeholder="Password"
-				bind:value={password}
+				placeholder="name"
 			/>
-			<div class="text-red-600">
-				{password_error}
-			</div>
+			{#if $errors.name}
+				<small>{$errors.name}</small>
+			{/if}
 		</label>
-
+		<label class="label">
+			<span>Password</span>
+			<input
+				id="password"
+				name="password"
+				on:change={handleChange}
+				on:blur={handleChange}
+				bind:value={$form.password}
+				class={'input'}
+				type="text"
+				placeholder="password"
+			/>
+			{#if $errors.password}
+				<small>{$errors.password}</small>
+			{/if}
+		</label>
 		<button class="btn" type="submit">Submit</button>
 	</form>
 
