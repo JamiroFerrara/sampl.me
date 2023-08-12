@@ -1,15 +1,25 @@
 <script lang="ts">
-	export let value = '';
-	export let name = '';
-
-	let error = '';
-	let has_error = false;
+	export let name = 'default';
+	export let handleChange: (event: Event) => any;
+	export let value: any;
+	export let error: string;
+	let name_capitalized = name.charAt(0).toUpperCase() + name.slice(1);
 </script>
 
 <label class="label">
-	<span>{name}</span>
-	<input {name} class={has_error ? 'input input-error' : 'input'} type="text" bind:value />
-	<div class="text-red-600">
-		{error}
-	</div>
+	<span>{name_capitalized}</span>
+	<input
+		id={name}
+		{name}
+		on:change={handleChange}
+		on:blur={handleChange}
+		bind:value
+		class={'input'}
+		type="text"
+		placeholder={name_capitalized}
+	/>
+
+	{#if error}
+		<small>{error}</small>
+	{/if}
 </label>

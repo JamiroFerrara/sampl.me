@@ -5,6 +5,7 @@
 	import Field from './field.svelte';
 	import { createForm } from 'svelte-forms-lib';
 	import * as yup from 'yup';
+	import Icon from '../icon/icon.svelte';
 
 	export let onUserCreated: () => void;
 
@@ -18,53 +19,31 @@
 
 	const { form, errors, state, handleChange, handleSubmit } = createForm({
 		initialValues: {
-			name: '',
+			username: '',
 			password: ''
 		},
 		validationSchema: yup.object().shape({
-			name: yup.string().required(),
+			username: yup.string().required(),
 			password: yup.string().required()
 		}),
 		onSubmit: (values) => {
-			createUser(values.name, values.password);
+			createUser(values.username, values.password);
 		}
 	});
 </script>
 
-<div>
-	<form class="m-8 space-y-4 card p-4" on:submit={handleSubmit}>
-		<label class="label">
-			<span>Name</span>
-			<input
-				id="name"
-				name="name"
-				on:change={handleChange}
-				on:blur={handleChange}
-				bind:value={$form.name}
-				class={'input'}
-				type="text"
-				placeholder="name"
-			/>
-			{#if $errors.name}
-				<small>{$errors.name}</small>
-			{/if}
-		</label>
-		<label class="label">
-			<span>Password</span>
-			<input
-				id="password"
-				name="password"
-				on:change={handleChange}
-				on:blur={handleChange}
-				bind:value={$form.password}
-				class={'input'}
-				type="text"
-				placeholder="password"
-			/>
-			{#if $errors.password}
-				<small>{$errors.password}</small>
-			{/if}
-		</label>
-		<button class="btn" type="submit">Submit</button>
+<div class="border">
+	<form class="m-24 space-y-4 card p-8 flex flex-col justify-center" on:submit={handleSubmit}>
+		<div class="w-full flex flex-col justify-center">
+			<Icon />
+			<h1 class="self-center font-bold text-3xl">Login</h1>
+		</div>
+		<Field name="username" value={$form.username} error={$errors.username} {handleChange} />
+		<Field name="password" value={$form.password} error={$errors.password} {handleChange} />
+
+		<div class="flex flex-row justify-center space-x-4">
+			<button class="btn variant-filled" type="submit">Cancel</button>
+			<button class="btn variant-filled-primary" type="submit">Login</button>
+		</div>
 	</form>
 </div>

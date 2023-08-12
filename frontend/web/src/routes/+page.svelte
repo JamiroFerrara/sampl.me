@@ -21,10 +21,3 @@
 </script>
 
 <Login {onUserCreated} />
-
-{#each users as user}
-	<div>
-		User: {user.username}
-		Password: {user.password}
-	</div>
-{/each}
