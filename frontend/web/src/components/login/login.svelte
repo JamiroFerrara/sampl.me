@@ -45,5 +45,11 @@
 			<button class="btn variant-filled" type="submit">Cancel</button>
 			<button class="btn variant-filled-primary" type="submit">Login</button>
 		</div>
+		<a
+			href="/register"
+			class="self-center hover:text-primary-500 transform transition cursor-pointer"
+		>
+			Don't have an account? Click here!
+		</a>
 	</form>
 </div>
