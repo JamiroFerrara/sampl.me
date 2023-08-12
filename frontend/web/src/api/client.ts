@@ -9,10 +9,21 @@
  * ---------------------------------------------------------------
  */
 
+export interface Picture {
+  id?: string | null;
+  url?: string | null;
+  /** @format date-time */
+  created?: string;
+  /** @format date-time */
+  expiry?: string;
+  description?: string | null;
+}
+
 export interface User {
   id?: string | null;
-  username?: string | null;
+  email?: string | null;
   password?: string | null;
+  picture?: Picture;
 }
 
 export type QueryParamsType = Record<string | number, any>;
@@ -320,6 +331,101 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
     deleteUser: (id: string, params: RequestParams = {}) =>
       this.request<User, any>({
         path: `/User/Delete${id}`,
+        method: "GET",
+        format: "json",
+        ...params,
+      }),
+  };
+  picture = {
+    /**
+     * No description
+     *
+     * @tags api
+     * @name CreatePicture
+     * @request POST:/Picture/Create
+     */
+    createPicture: (data: Picture, params: RequestParams = {}) =>
+      this.request<Picture, any>({
+        path: `/Picture/Create`,
+        method: "POST",
+        body: data,
+        type: ContentType.Json,
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags api
+     * @name UpdatePicture
+     * @request POST:/Picture/Update/{id}
+     */
+    updatePicture: (id: string, data: Picture, params: RequestParams = {}) =>
+      this.request<Picture[], any>({
+        path: `/Picture/Update/${id}`,
+        method: "POST",
+        body: data,
+        type: ContentType.Json,
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags api
+     * @name GetAllPicture
+     * @request GET:/Picture/GetAll
+     */
+    getAllPicture: (params: RequestParams = {}) =>
+      this.request<Picture[], any>({
+        path: `/Picture/GetAll`,
+        method: "GET",
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags api
+     * @name GetPicture
+     * @request GET:/Picture/Get/{id}
+     */
+    getPicture: (id: string, params: RequestParams = {}) =>
+      this.request<Picture, any>({
+        path: `/Picture/Get/${id}`,
+        method: "GET",
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags api
+     * @name DeleteAllPicture
+     * @request GET:/Picture/DeleteAll
+     */
+    deleteAllPicture: (params: RequestParams = {}) =>
+      this.request<boolean, any>({
+        path: `/Picture/DeleteAll`,
+        method: "GET",
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags api
+     * @name DeletePicture
+     * @request GET:/Picture/Delete{id}
+     */
+    deletePicture: (id: string, params: RequestParams = {}) =>
+      this.request<Picture, any>({
+        path: `/Picture/Delete${id}`,
         method: "GET",
         format: "json",
         ...params,

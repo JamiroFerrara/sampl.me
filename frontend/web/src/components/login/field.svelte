@@ -14,7 +14,7 @@
 		on:change={handleChange}
 		on:blur={handleChange}
 		bind:value
-		class={'input'}
+		class={'input variant-filled'}
 		type="text"
 		placeholder={name_capitalized}
 	/>

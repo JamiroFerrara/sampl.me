@@ -1,6 +1,6 @@
 public class User : SurrealTable
 {
-    public string username { get; set; }
+    public string email { get; set; }
     public string password { get; set; }
     public Picture picture { get; set; }
 }
