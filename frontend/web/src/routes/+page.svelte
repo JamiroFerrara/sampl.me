@@ -2,22 +2,26 @@
 	import { onMount } from 'svelte';
 	import { api } from '../api/api';
 	import type { User } from '../api/client';
-	import Login from '../components/login/login.svelte';
 
+	let response = false;
 	let users: User[] = [];
 
-	async function getUsers() {
-		let res = await api.user.getAllUser();
-		users = res.data;
-	}
-
-	function onUserCreated() {
-		getUsers();
+	async function refresh() {
+		var res = await api.user.login({ email: 'asdf', password: 'asdf' });
+		var res2 = await api.user.getAllUser();
+		response = res.data;
+		users = res2.data;
 	}
 
 	onMount(async () => {
-		await getUsers();
+		await refresh();
 	});
 </script>
 
-<Login {onUserCreated} />
+<div on:click={() => refresh()} class="border">cllick</div>
+
+{response}
+
+{#each users as user}
+	{user.username}
+{/each}

@@ -9,8 +9,9 @@
 
 	export let onUserCreated: () => void;
 
-	async function createUser(email: string, password: string) {
+	async function createUser(username: string, email: string, password: string) {
 		await api.user.createUser({
+			username: username,
 			email: email,
 			password: password
 		});
@@ -21,17 +22,15 @@
 		initialValues: {
 			username: '',
 			email: '',
-			password: '',
-			password2: ''
+			password: ''
 		},
 		validationSchema: yup.object().shape({
 			username: yup.string().required(),
 			email: yup.string().required(),
-			password: yup.string().required(),
-			password2: yup.string().required()
+			password: yup.string().required()
 		}),
 		onSubmit: (values) => {
-			createUser(values.email, values.password);
+			createUser(values.username, values.email, values.password);
 		}
 	});
 </script>
@@ -48,7 +47,6 @@
 		<Field name="username" value={$form.username} error={$errors.password} {handleChange} />
 		<Field name="email" value={$form.email} error={$errors.email} {handleChange} />
 		<Field name="password" value={$form.password} error={$errors.password} {handleChange} />
-		<Field name="password_check" value={$form.password2} error={$errors.password2} {handleChange} />
 
 		<div class="flex flex-row justify-center space-x-4">
 			<button class="btn variant-filled" type="submit">Cancel</button>

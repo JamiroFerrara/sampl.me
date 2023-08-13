@@ -6,16 +6,7 @@
 	import { createForm } from 'svelte-forms-lib';
 	import * as yup from 'yup';
 	import Icon from '../icon/icon.svelte';
-
-	export let onUserCreated: () => void;
-
-	async function createUser(email: string, password: string) {
-		await api.user.createUser({
-			email: email,
-			password: password
-		});
-		onUserCreated();
-	}
+	let result = '';
 
 	const { form, errors, state, handleChange, handleSubmit } = createForm({
 		initialValues: {
@@ -26,8 +17,9 @@
 			email: yup.string().required(),
 			password: yup.string().required()
 		}),
-		onSubmit: (values) => {
-			createUser(values.email, values.password);
+		onSubmit: async (values) => {
+			var result = await api.user.echo({ name: 'asdf' });
+			console.log(result.data);
 		}
 	});
 </script>
@@ -44,6 +36,7 @@
 		<Field name="email" value={$form.email} error={$errors.email} {handleChange} />
 		<Field name="password" value={$form.password} error={$errors.password} {handleChange} />
 		<span>Forgot password?</span>
+		{result}
 
 		<div class="flex flex-row justify-center space-x-4">
 			<button class="btn variant-filled" type="submit">Cancel</button>
