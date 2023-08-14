@@ -12,6 +12,8 @@ public class User : Table
         if (res.Count() > 0) return true;
         else return false;
     }
+
+    public async Task<User[]> getjamiro() => await Where<User>(x => x.username == "jamiro");
 }
 
 public class LoginRequest

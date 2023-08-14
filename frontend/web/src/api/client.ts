@@ -347,5 +347,20 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
         format: "json",
         ...params,
       }),
+
+    /**
+     * No description
+     *
+     * @tags User
+     * @name Getjamiro
+     * @request POST:/User/getjamiro
+     */
+    getjamiro: (params: RequestParams = {}) =>
+      this.request<User[], any>({
+        path: `/User/getjamiro`,
+        method: "POST",
+        format: "json",
+        ...params,
+      }),
   };
 }
