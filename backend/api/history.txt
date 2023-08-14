@@ -1,0 +1,5 @@
+#V2
+SELECT * FROM User WHERE User.username = 'asdf'
+SELECT * from User
+SELECT * from User where User.username='asdf'
+SELECT * from User where username='asdf'

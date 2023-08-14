@@ -6,14 +6,10 @@ public class User : Table
     public string email { get; set; }
     public string password { get; set; }
 
-    public async Task<bool> login([FromBody] LoginRequest req)
-    {
-        var res = await Where<User>(x => x.username == req.email && x.email == req.email);
-        if (res.Count() > 0) return true;
-        else return false;
-    }
-
-    public async Task<User[]> getjamiro() => await Where<User>(x => x.username == "jamiro");
+    public bool login([FromBody] LoginRequest req) => Where<User>(x =>
+                x.username == req.email &&
+                x.password == req.password
+                )?.Result?.Count() > 0;
 }
 
 public class LoginRequest
