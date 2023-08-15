@@ -6,10 +6,10 @@ public class User : Table
     public string email { get; set; }
     public string password { get; set; }
 
-    public bool login([FromBody] LoginRequest req) => Where<User>(x =>
+    public bool login([FromBody] LoginRequest req) => Count<User>(x =>
                 x.username == req.email &&
                 x.password == req.password
-                )?.Result?.Count() > 0;
+                ).Result > 0;
 }
 
 public class LoginRequest

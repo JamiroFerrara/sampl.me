@@ -6,7 +6,7 @@
 	let response = false;
 
 	async function refresh() {
-		var res = await api.user.login({ email: 'jamiro', password: 'ferrara' });
+		var res = await api.user.login({ email: 'asdf', password: 'asdf' });
 		response = res.data;
 	}
 
