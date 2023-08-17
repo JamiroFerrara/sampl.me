@@ -4,7 +4,6 @@
 	import type { Sample, User } from '../api/client';
 	import { each } from 'svelte/internal';
 
-	let track: Sample = {};
 	let samples: Sample[] = [];
 
 	async function refresh() {
@@ -23,7 +22,8 @@
 	}
 
 	async function addTag() {
-		let res = await api.sample.addTag({ tag: 'sample', id: 'Sample:ilu15l7vqwpzmfoyn5po' });
+		let id = samples[0].id!;
+		let res = await api.sample.addTag({ tag: 'sample', id: id });
 		await refresh();
 	}
 
