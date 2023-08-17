@@ -1,0 +1,79 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/stiwie/repos/fullstack/sampl.me/utils/csharp_client_generator/utils.csproj": {}
+  },
+  "projects": {
+    "/home/stiwie/repos/fullstack/sampl.me/utils/csharp_client_generator/utils.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/stiwie/repos/fullstack/sampl.me/utils/csharp_client_generator/utils.csproj",
+        "projectName": "utils",
+        "projectPath": "/home/stiwie/repos/fullstack/sampl.me/utils/csharp_client_generator/utils.csproj",
+        "packagesPath": "/home/stiwie/.nuget/packages/",
+        "outputPath": "/home/stiwie/repos/fullstack/sampl.me/utils/csharp_client_generator/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/stiwie/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "NSwag.CodeGeneration.CSharp": {
+              "target": "Package",
+              "version": "[13.20.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
+            "System.ComponentModel.Annotations": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "System.Net.Http": {
+              "target": "Package",
+              "version": "[4.3.4, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.305/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

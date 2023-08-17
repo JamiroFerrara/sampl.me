@@ -29,3 +29,8 @@ public class Sample : S3Table
         return true;
     }
 }
+
+public class Pussy : Table
+{
+    public string name { get; set; }
+}

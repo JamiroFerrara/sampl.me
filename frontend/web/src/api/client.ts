@@ -9,6 +9,11 @@
  * ---------------------------------------------------------------
  */
 
+export interface Pussy {
+  id?: string | null;
+  name?: string | null;
+}
+
 export interface Sample {
   id?: string | null;
   url?: string | null;
@@ -356,6 +361,101 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
         path: `/User/login`,
         method: "POST",
         query: query,
+        format: "json",
+        ...params,
+      }),
+  };
+  pussy = {
+    /**
+     * No description
+     *
+     * @tags api
+     * @name CreatePussy
+     * @request POST:/Pussy/Create
+     */
+    createPussy: (data: Pussy, params: RequestParams = {}) =>
+      this.request<Pussy, any>({
+        path: `/Pussy/Create`,
+        method: "POST",
+        body: data,
+        type: ContentType.Json,
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags api
+     * @name UpdatePussy
+     * @request POST:/Pussy/Update/{id}
+     */
+    updatePussy: (id: string, data: Pussy, params: RequestParams = {}) =>
+      this.request<Pussy[], any>({
+        path: `/Pussy/Update/${id}`,
+        method: "POST",
+        body: data,
+        type: ContentType.Json,
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags api
+     * @name DeleteAllPussy
+     * @request POST:/Pussy/DeleteAll
+     */
+    deleteAllPussy: (params: RequestParams = {}) =>
+      this.request<boolean, any>({
+        path: `/Pussy/DeleteAll`,
+        method: "POST",
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags api
+     * @name DeletePussy
+     * @request POST:/Pussy/Delete{id}
+     */
+    deletePussy: (id: string, params: RequestParams = {}) =>
+      this.request<Pussy, any>({
+        path: `/Pussy/Delete${id}`,
+        method: "POST",
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags api
+     * @name GetAllPussy
+     * @request GET:/Pussy/GetAll
+     */
+    getAllPussy: (params: RequestParams = {}) =>
+      this.request<Pussy[], any>({
+        path: `/Pussy/GetAll`,
+        method: "GET",
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags api
+     * @name GetPussy
+     * @request GET:/Pussy/Get{id}
+     */
+    getPussy: (id: string, params: RequestParams = {}) =>
+      this.request<Pussy[], any>({
+        path: `/Pussy/Get${id}`,
+        method: "GET",
         format: "json",
         ...params,
       }),

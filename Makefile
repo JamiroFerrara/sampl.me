@@ -8,6 +8,7 @@ init:
 
 sync:
 	npx swagger-typescript-api -p http://localhost:5280/swagger/v1/swagger.json -o frontend/web/src/api -n client.ts
+	utils/csharp_client_generator/bin/Debug/net7.0/utils
 
 debug:
 	tmux split-window -h "cargo run --manifest-path backend/api-s3/Cargo.toml"
