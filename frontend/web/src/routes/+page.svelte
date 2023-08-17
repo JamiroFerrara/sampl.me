@@ -1,20 +1,42 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { api } from '../api/api';
-	import type { User } from '../api/client';
+	import type { Sample, User } from '../api/client';
+	import { each } from 'svelte/internal';
 
-	let response = false;
+	let track: Sample = {};
+	let samples: Sample[] = [];
 
 	async function refresh() {
-		var res = await api.user.login({ email: 'asdf', password: 'asdf' });
-		response = res.data;
+		let res = await api.sample.getAllSample();
+		samples = res.data;
+	}
+
+	async function create() {
+		let res = await api.sample.createSample({
+			name: 'Kick01',
+			description: 'A simple kick',
+			tag: ['kick']
+		});
+		await refresh();
+		console.log(res);
+	}
+
+	async function addTag() {
+		let res = await api.sample.addTag({ tag: 'sample', id: 'Sample:ilu15l7vqwpzmfoyn5po' });
+		await refresh();
 	}
 
 	onMount(async () => {
-		await refresh();
+		refresh();
 	});
 </script>
 
-<div on:click={() => refresh()} class="border">cllick</div>
+<div on:click={() => create()} class="border">create</div>
+<div on:click={() => addTag()} class="border">add</div>
 
-{response}
+<div class="flex flex-col">
+	{#each samples as sample}
+		{sample.tag}
+	{/each}
+</div>

@@ -9,9 +9,16 @@
  * ---------------------------------------------------------------
  */
 
-export interface LoginRequest {
-  email?: string | null;
-  password?: string | null;
+export interface Sample {
+  id?: string | null;
+  url?: string | null;
+  /** @format date-time */
+  created?: string;
+  /** @format date-time */
+  expiry?: string;
+  name?: string | null;
+  description?: string | null;
+  tag?: string[] | null;
 }
 
 export interface User {
@@ -338,9 +345,32 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * @name Login
      * @request POST:/User/login
      */
-    login: (data: LoginRequest, params: RequestParams = {}) =>
+    login: (
+      query: {
+        email: string;
+        password: string;
+      },
+      params: RequestParams = {},
+    ) =>
       this.request<boolean, any>({
         path: `/User/login`,
+        method: "POST",
+        query: query,
+        format: "json",
+        ...params,
+      }),
+  };
+  sample = {
+    /**
+     * No description
+     *
+     * @tags api
+     * @name CreateSample
+     * @request POST:/Sample/Create
+     */
+    createSample: (data: Sample, params: RequestParams = {}) =>
+      this.request<Sample, any>({
+        path: `/Sample/Create`,
         method: "POST",
         body: data,
         type: ContentType.Json,
@@ -351,14 +381,98 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
     /**
      * No description
      *
-     * @tags User
-     * @name Getjamiro
-     * @request POST:/User/getjamiro
+     * @tags api
+     * @name UpdateSample
+     * @request POST:/Sample/Update/{id}
      */
-    getjamiro: (params: RequestParams = {}) =>
-      this.request<User[], any>({
-        path: `/User/getjamiro`,
+    updateSample: (id: string, data: Sample, params: RequestParams = {}) =>
+      this.request<Sample[], any>({
+        path: `/Sample/Update/${id}`,
         method: "POST",
+        body: data,
+        type: ContentType.Json,
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags api
+     * @name GetAllSample
+     * @request GET:/Sample/GetAll
+     */
+    getAllSample: (params: RequestParams = {}) =>
+      this.request<Sample[], any>({
+        path: `/Sample/GetAll`,
+        method: "GET",
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags api
+     * @name GetSample
+     * @request GET:/Sample/Get/{id}
+     */
+    getSample: (id: string, params: RequestParams = {}) =>
+      this.request<Sample, any>({
+        path: `/Sample/Get/${id}`,
+        method: "GET",
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags api
+     * @name DeleteAllSample
+     * @request GET:/Sample/DeleteAll
+     */
+    deleteAllSample: (params: RequestParams = {}) =>
+      this.request<boolean, any>({
+        path: `/Sample/DeleteAll`,
+        method: "GET",
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags api
+     * @name DeleteSample
+     * @request GET:/Sample/Delete{id}
+     */
+    deleteSample: (id: string, params: RequestParams = {}) =>
+      this.request<Sample, any>({
+        path: `/Sample/Delete${id}`,
+        method: "GET",
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags Sample
+     * @name AddTag
+     * @request POST:/Sample/addTag
+     */
+    addTag: (
+      query: {
+        tag: string;
+        id: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<boolean, any>({
+        path: `/Sample/addTag`,
+        method: "POST",
+        query: query,
         format: "json",
         ...params,
       }),
