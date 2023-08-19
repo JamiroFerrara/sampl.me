@@ -30,7 +30,7 @@ public class Sample : S3Table
     }
 }
 
-public class Pussy : Table
+public class Alessia : Table
 {
     public string name { get; set; }
 }

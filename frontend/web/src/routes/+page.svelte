@@ -12,6 +12,7 @@
 	}
 
 	async function create() {
+		let res2 = await api.alessia.getAlessia('');
 		let res = await api.sample.createSample({
 			name: 'Kick01',
 			description: 'A simple kick',

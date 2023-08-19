@@ -25,6 +25,7 @@ internal class Program
         app.UseHttpsRedirection();
         app.UseAuthorization();
         app.MapControllers();
+        Task.Run(async () => await app.GenerateSwaggerFile());
         app.Run();
     }
 }

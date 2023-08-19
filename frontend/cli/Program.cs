@@ -9,12 +9,3 @@ await client.CreateUserAsync(new User()
     Username = "username",
     Password = "password"
 });
-
-await client.CreatePussyAsync(new Pussy
-{
-    Name = "vagain"
-});
-
-var vagain = await client.GetAllPussyAsync();
-foreach (var user in vagain)
-    Console.WriteLine(user.Name);

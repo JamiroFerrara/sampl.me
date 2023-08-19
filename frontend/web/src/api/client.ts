@@ -9,7 +9,7 @@
  * ---------------------------------------------------------------
  */
 
-export interface Pussy {
+export interface Alessia {
   id?: string | null;
   name?: string | null;
 }
@@ -365,17 +365,17 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
         ...params,
       }),
   };
-  pussy = {
+  alessia = {
     /**
      * No description
      *
      * @tags api
-     * @name CreatePussy
-     * @request POST:/Pussy/Create
+     * @name CreateAlessia
+     * @request POST:/Alessia/Create
      */
-    createPussy: (data: Pussy, params: RequestParams = {}) =>
-      this.request<Pussy, any>({
-        path: `/Pussy/Create`,
+    createAlessia: (data: Alessia, params: RequestParams = {}) =>
+      this.request<Alessia, any>({
+        path: `/Alessia/Create`,
         method: "POST",
         body: data,
         type: ContentType.Json,
@@ -387,12 +387,12 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * No description
      *
      * @tags api
-     * @name UpdatePussy
-     * @request POST:/Pussy/Update/{id}
+     * @name UpdateAlessia
+     * @request POST:/Alessia/Update/{id}
      */
-    updatePussy: (id: string, data: Pussy, params: RequestParams = {}) =>
-      this.request<Pussy[], any>({
-        path: `/Pussy/Update/${id}`,
+    updateAlessia: (id: string, data: Alessia, params: RequestParams = {}) =>
+      this.request<Alessia[], any>({
+        path: `/Alessia/Update/${id}`,
         method: "POST",
         body: data,
         type: ContentType.Json,
@@ -404,12 +404,12 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * No description
      *
      * @tags api
-     * @name DeleteAllPussy
-     * @request POST:/Pussy/DeleteAll
+     * @name DeleteAllAlessia
+     * @request POST:/Alessia/DeleteAll
      */
-    deleteAllPussy: (params: RequestParams = {}) =>
+    deleteAllAlessia: (params: RequestParams = {}) =>
       this.request<boolean, any>({
-        path: `/Pussy/DeleteAll`,
+        path: `/Alessia/DeleteAll`,
         method: "POST",
         format: "json",
         ...params,
@@ -419,12 +419,12 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * No description
      *
      * @tags api
-     * @name DeletePussy
-     * @request POST:/Pussy/Delete{id}
+     * @name DeleteAlessia
+     * @request POST:/Alessia/Delete{id}
      */
-    deletePussy: (id: string, params: RequestParams = {}) =>
-      this.request<Pussy, any>({
-        path: `/Pussy/Delete${id}`,
+    deleteAlessia: (id: string, params: RequestParams = {}) =>
+      this.request<Alessia, any>({
+        path: `/Alessia/Delete${id}`,
         method: "POST",
         format: "json",
         ...params,
@@ -434,12 +434,12 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * No description
      *
      * @tags api
-     * @name GetAllPussy
-     * @request GET:/Pussy/GetAll
+     * @name GetAllAlessia
+     * @request GET:/Alessia/GetAll
      */
-    getAllPussy: (params: RequestParams = {}) =>
-      this.request<Pussy[], any>({
-        path: `/Pussy/GetAll`,
+    getAllAlessia: (params: RequestParams = {}) =>
+      this.request<Alessia[], any>({
+        path: `/Alessia/GetAll`,
         method: "GET",
         format: "json",
         ...params,
@@ -449,12 +449,12 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * No description
      *
      * @tags api
-     * @name GetPussy
-     * @request GET:/Pussy/Get{id}
+     * @name GetAlessia
+     * @request GET:/Alessia/Get{id}
      */
-    getPussy: (id: string, params: RequestParams = {}) =>
-      this.request<Pussy[], any>({
-        path: `/Pussy/Get${id}`,
+    getAlessia: (id: string, params: RequestParams = {}) =>
+      this.request<Alessia[], any>({
+        path: `/Alessia/Get${id}`,
         method: "GET",
         format: "json",
         ...params,

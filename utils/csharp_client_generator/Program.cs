@@ -1,10 +1,8 @@
 ﻿using NSwag;
 using NSwag.CodeGeneration.CSharp;
 
-System.Net.WebClient wclient = new System.Net.WebClient();
-
-var document = await OpenApiDocument.FromJsonAsync(wclient.DownloadString("http://localhost:5280/swagger/v1/swagger.json"));
-wclient.Dispose();
+var content = File.ReadAllText("../../backend/api/swagger.json");
+var document = await OpenApiDocument.FromJsonAsync(content);
 
 var settings = new CSharpClientGeneratorSettings
 {
@@ -15,7 +13,7 @@ var settings = new CSharpClientGeneratorSettings
 var generator = new CSharpClientGenerator(document, settings);
 var code = generator.GenerateFile();
 
-string outputPath = "./frontend/cli";
+string outputPath = "../../frontend/cli";
 string fileName = "api.cs";
 string fullPath = Path.Combine(outputPath, fileName);
 File.WriteAllText(fullPath, code);
